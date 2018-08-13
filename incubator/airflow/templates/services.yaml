@@ -7,6 +7,13 @@ metadata:
     chart: {{ template "airflow.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  {{- if .Values.airflow.service.annotations }}
+  annotations:
+    {{- range $key, $value := .Values.web.service.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
+
 spec:
   type: {{ .Values.airflow.service.type }}
   selector:
@@ -26,6 +33,12 @@ metadata:
     chart: {{ template "airflow.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  {{- if .Values.airflow.service.annotations }}
+  annotations:
+    {{- range $key, $value := .Values.web.service.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
 spec:
   type: {{ .Values.airflow.service.type }}
   selector:
@@ -46,6 +59,12 @@ metadata:
     chart: {{ template "airflow.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  {{- if .Values.airflow.service.annotations }}
+  annotations:
+    {{- range $key, $value := .Values.web.service.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
 spec:
   ports:
     - name: worker
