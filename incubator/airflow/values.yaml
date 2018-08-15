@@ -79,17 +79,27 @@ airflow:
 
 ##
 ## Web configuration
-# web:
-#   service:
-#     type: ClusterIP
-#     annotations: {}
+web:
+  service:
+    ##
+    ## Can add a specific type for the service to override airflow.service.type
+    ## Useful if you want a different service type for flower
+    # type: ClusterIP
+    ##
+    ## Custom annotations for the web service
+    annotations: {}
 
 ##
 ## Flower configuration
-# flower:
-#   service:
-#     type: ClusterIP
-#     annotations: {}
+flower:
+  service:
+    ##
+    ## Can add a specific type for the service to override airflow.service.type
+    ## Useful if you want a different service type for flower
+    # type: ClusterIP
+    ##
+    ## Custom annotations for the flower service
+    annotations: {}
 
 ##
 ## Workers configuration
