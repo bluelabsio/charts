@@ -79,17 +79,17 @@ airflow:
 
 ##
 ## Web configuration
-web:
-  service:
-    type: ClusterIP
-    annotations: {}
+# web:
+#   service:
+#     type: ClusterIP
+#     annotations: {}
 
 ##
 ## Flower configuration
-flower:
-  service:
-    type: ClusterIP
-    annotations: {}
+# flower:
+#   service:
+#     type: ClusterIP
+#     annotations: {}
 
 ##
 ## Workers configuration
