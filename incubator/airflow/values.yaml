@@ -10,6 +10,9 @@ airflow:
   ##    python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)"
   ## fernet_key: ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD
   fernet_key: ""
+  ##
+  ## Shared service configuration (for both web and flower)
+  ## Can be overridden in the web and flower value blocks
   service:
     type: ClusterIP
   ##
@@ -73,6 +76,20 @@ airflow:
   ## Configure pod disruption budget for the scheduler
   pod_disruption_budget:
     maxUnavailable: 1
+
+##
+## Web configuration
+web:
+  service:
+    type: ClusterIP
+    annotations: {}
+
+##
+## Flower configuration
+flower:
+  service:
+    type: ClusterIP
+    annotations: {}
 
 ##
 ## Workers configuration

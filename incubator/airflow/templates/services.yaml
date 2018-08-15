@@ -8,12 +8,12 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
   annotations:
-    {{- range $key, $value := .Values.airflow.service.annotations }}
+    {{- range $key, $value := .Values.web.service.annotations }}
     {{ $key }}: {{ $value | quote }}
     {{- end }}
 
 spec:
-  type: {{ .Values.airflow.service.type }}
+  type: {{ .Values.web.service.type | default .Values.airflow.service.type }}
   selector:
     app: {{ template "airflow.name" . }}-web
     release: {{ .Release.Name }}
@@ -32,11 +32,11 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
   annotations:
-    {{- range $key, $value := .Values.airflow.service.annotations }}
+    {{- range $key, $value := .Values.flower.service.annotations }}
     {{ $key }}: {{ $value | quote }}
     {{- end }}
 spec:
-  type: {{ .Values.airflow.service.type }}
+  type: {{ .Values.flower.service.type | default .Values.airflow.service.type }}
   selector:
     app: {{ template "airflow.name" . }}-flower
     release: {{ .Release.Name }}
@@ -55,10 +55,6 @@ metadata:
     chart: {{ template "airflow.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-  annotations:
-    {{- range $key, $value := .Values.airflow.service.annotations }}
-    {{ $key }}: {{ $value | quote }}
-    {{- end }}
 spec:
   ports:
     - name: worker
