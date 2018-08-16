@@ -20,6 +20,12 @@ spec:
     - name: web
       protocol: TCP
       port: 8080
+    {{- range .Values.web.services.extra_ports }}
+    - name: {{ .name }} 
+      protocol: {{ .protocol }}
+      port: {{ .containerPort }}
+      targetPort: {{ .containerPort}}
+    {{- end }}
 ---
 apiVersion: v1
 kind: Service
@@ -43,6 +49,12 @@ spec:
     - name: flower
       protocol: TCP
       port: 5555
+    {{- range .Values.flower.services.extra_ports }}
+    - name: {{ .name }} 
+      protocol: {{ .protocol }}
+      port: {{ .containerPort }}
+      targetPort: {{ .containerPort}}
+    {{- end }}
 ---
 # Headless service for stable DNS entries of StatefulSet members.
 apiVersion: v1

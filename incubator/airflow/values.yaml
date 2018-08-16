@@ -88,6 +88,9 @@ web:
     ##
     ## Custom annotations for the web service
     annotations: {}
+    ##
+    ## Other ports to bind to the service, if needed
+    extra_ports: []
 
 ##
 ## Flower configuration
@@ -100,6 +103,9 @@ flower:
     ##
     ## Custom annotations for the flower service
     annotations: {}
+    ##
+    ## Other ports to bind to the service, if needed
+    extra_ports: []
 
 ##
 ## Workers configuration
