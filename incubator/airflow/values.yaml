@@ -89,8 +89,11 @@ web:
     ## Custom annotations for the web service
     annotations: {}
     ##
-    ## Other ports to bind to the service, if needed
-    extra_ports: []
+    ## 
+    port: 8080
+    ##
+    ##
+    # targetPort: 8080
 
 ##
 ## Flower configuration
@@ -104,8 +107,11 @@ flower:
     ## Custom annotations for the flower service
     annotations: {}
     ##
-    ## Other ports to bind to the service, if needed
-    extra_ports: []
+    ## 
+    port: 5555
+    ##
+    ##
+    # targetPort: 8080
 
 ##
 ## Workers configuration
