@@ -94,9 +94,6 @@ web:
     ##
     ##
     # targetPort: 8080
-    ##
-    ##
-    extra_labels: {}
 
 ##
 ## Flower configuration
@@ -115,9 +112,6 @@ flower:
     ##
     ##
     # targetPort: 5555
-    ##
-    ##
-    extra_labels: {}
 
 ##
 ## Workers configuration
