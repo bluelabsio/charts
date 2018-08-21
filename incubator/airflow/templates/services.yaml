@@ -7,15 +7,22 @@ metadata:
     chart: {{ template "airflow.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  annotations:
+    {{- range $key, $value := .Values.web.service.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
 spec:
-  type: {{ .Values.airflow.service.type }}
+  type: {{ .Values.web.service.type | default .Values.airflow.service.type }}
   selector:
     app: {{ template "airflow.name" . }}-web
     release: {{ .Release.Name }}
   ports:
     - name: web
       protocol: TCP
-      port: 8080
+      port: {{ .Values.web.service.port }}
+      {{- if .Values.web.service.targetPort }}
+      targetPort: {{ .Values.web.service.targetPort }}
+      {{- end }}
 ---
 apiVersion: v1
 kind: Service
@@ -26,15 +33,22 @@ metadata:
     chart: {{ template "airflow.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  annotations:
+    {{- range $key, $value := .Values.flower.service.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
 spec:
-  type: {{ .Values.airflow.service.type }}
+  type: {{ .Values.flower.service.type | default .Values.airflow.service.type }}
   selector:
     app: {{ template "airflow.name" . }}-flower
     release: {{ .Release.Name }}
   ports:
     - name: flower
       protocol: TCP
-      port: 5555
+      port: {{ .Values.flower.service.port }}
+      {{- if .Values.flower.service.targetPort }}
+      targetPort: {{ .Values.flower.service.targetPort }}
+      {{- end }}
 ---
 # Headless service for stable DNS entries of StatefulSet members.
 apiVersion: v1
