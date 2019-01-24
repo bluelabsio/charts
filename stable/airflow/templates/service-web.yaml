@@ -8,8 +8,12 @@ metadata:
     chart: {{ template "airflow.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  annotations:
+    {{- range $key, $value := .Values.web.service.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
 spec:
-  type: {{ .Values.airflow.service.type }}
+  type: {{ .Values.web.service.type | default .Values.airflow.service.type }}
   selector:
     app: {{ template "airflow.name" . }}
     component: web
@@ -17,4 +21,5 @@ spec:
   ports:
     - name: web
       protocol: TCP
-      port: 8080
+      port: {{ .Values.web.service.port }}
+      targetPort: 8080

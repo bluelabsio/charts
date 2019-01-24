@@ -92,6 +92,35 @@ airflow:
   ##     type: aws
   ##     extra: '{"aws_access_key_id": "**********", "aws_secret_access_key": "***", "region_name":"eu-central-1"}'
   connections: {}
+
+##
+## Web configuration
+web:
+  service:
+    ##
+    ## Can add a specific type for the service to override airflow.service.type
+    # type: ClusterIP
+    ##
+    ## Custom annotations for the web service
+    annotations: {}
+    ##
+    ##
+    port: 8080
+
+##
+## Flower configuration
+flower:
+  service:
+    ##
+    ## Can add a specific type for the service to override airflow.service.type
+    # type: ClusterIP
+    ##
+    ## Custom annotations for the flower service
+    annotations: {}
+    ##
+    ##
+    port: 5555
+
 ##
 ## Workers configuration
 workers:
