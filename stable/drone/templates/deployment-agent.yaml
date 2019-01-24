@@ -1,3 +1,4 @@
+{{- if not .Values.server.kubernetes.enabled -}}
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -38,10 +39,14 @@ spec:
       - name: {{ template "drone.fullname" . }}-agent
         image: "{{ .Values.images.agent.repository }}:{{ .Values.images.agent.tag }}"
         imagePullPolicy: {{ .Values.images.agent.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP
         env:
-          - name: DRONE_SERVER
-            value: {{ template "drone.fullname" . }}:9000
-          - name: DRONE_SECRET
+          - name: DRONE_RPC_SERVER
+            value: {{ template "drone.fullname" . }}-grpc:9000
+          - name: DRONE_RPC_SECRET
             valueFrom:
               secretKeyRef:
                 name: {{ template "drone.fullname" . }}
@@ -94,3 +99,4 @@ spec:
       - name: docker-graph-storage
         emptyDir: {}
 {{- end }}
+{{- end -}}
