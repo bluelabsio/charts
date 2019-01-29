@@ -250,6 +250,12 @@ The following table lists the configurable parameters of the Airflow chart and t
 | `airflow.webReplicas`                    | how many replicas for web server                        | `1`                       |
 | `airflow.config`                         | custom airflow configuration env variables              | `{}`                      |
 | `airflow.podDisruptionBudget`            | control pod disruption budget                           | `{'maxUnavailable': 1}`   |
+| `web.service.type`                       | web service type (overwrites airflow.service.type)      | (undefined)               |
+| `web.service.annotations`                | annotations for web service                             | `{}`                      |
+| `web.service.port`                       | service port for web                                    | `8080`                    |
+| `flower.service.type`                    | flower service type (overwrites airflow.service.type)   | (undefined)               |
+| `flower.service.annotations`             | annotations for flower service                          | `{}`                      |
+| `flower.service.port`                    | service port for flower                                 | `5555`                    |
 | `workers.enabled`                        | enable workers                                          | `true`                    |
 | `workers.replicas`                       | number of workers pods to launch                        | `1`                       |
 | `workers.resources`                      | custom resource configuration for worker pod            | `{}`                      |
