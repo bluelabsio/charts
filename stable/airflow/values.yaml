@@ -104,7 +104,7 @@ web:
     ## Custom annotations for the web service
     annotations: {}
     ##
-    ##
+    ## Overwrite service port (targetPort will stay at 8080)
     port: 8080
 
 ##
@@ -118,7 +118,7 @@ flower:
     ## Custom annotations for the flower service
     annotations: {}
     ##
-    ##
+    ## Overwrite service port (targetPort will stay at 5555)
     port: 5555
 
 ##
